@@ -1,9 +1,9 @@
 # PSMagicEightBall-
 Powershell Magic Eight Ball
 
-##Examples
+## Examples
 
-###Basic Usage
+### Basic Usage
 
 Ask for a single random answer:
 
@@ -13,7 +13,7 @@ Ask for a two random answers:
 
     Use-MagicEightBall -Count 2
 
-###Speak The Answer
+### Speak The Answer
 
 Use `System.Speech` to speak the answer:
 
@@ -23,7 +23,7 @@ Speak two answers:
 
     Use-MagicEightBall -Count 2 -Speak
 
-####Speech Speed
+#### Speech Speed
 
 Decrease speech speed:
 
