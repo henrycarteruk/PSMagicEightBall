@@ -1,25 +1,32 @@
 ﻿Function Get-EightBallAnswers {
     param(
         [ValidateRange(1, 20)]
-        [int]$Count = 1
+        [int]$Count = 1,
+
+        [ValidateSet("Yes", "No", "Maybe")]
+        [array]$AnswerSet = ("Yes", "No", "Maybe")
     )
 
-    $answer = @(
+    $answer_set_yes = @(
+        "As I see it, yes",
         "It is certain",
         "It is decidedly so",
-        "Without a doubt",
-        "Yes definitely",
-        "You may rely on it",
-        "As I see it, yes",
         "Most likely",
         "Outlook good",
-        "Yes",
         "Signs point to yes",
-        "Reply hazy try again",
+        "Without a doubt",
+        "Yes",
+        "Yes - definitely",
+        "You may rely on it"
+    )
+    $answer_set_maybe = @(
+        "Reply hazy, try again",
         "Ask again later",
         "Better not tell you now",
         "Cannot predict now",
-        "Concentrate and ask again",
+        "Concentrate and ask again"
+    )
+    $answer_set_no = @(
         "Don't count on it",
         "My reply is no",
         "My sources say no",
@@ -27,6 +34,11 @@
         "Very doubtful"
     )
 
+    switch ($AnswerSet) {
+        "Yes" {$answer += $answer_set_yes}
+        "No" {$answer += $answer_set_no}
+        "maybe" {$answer += $answer_set_maybe}
+    }
     $answer | Get-Random -Count $Count
 }
 
@@ -35,13 +47,16 @@ Function Use-MagicEightBall {
         [ValidateRange(1, 20)]
         [int]$Count = 1,
 
+        [ValidateSet("Yes", "No", "Maybe")]
+        [array]$AnswerSet = ("Yes", "No", "Maybe"),
+
         [switch]$Speak,
 
         [ValidateRange(-10, 10)]
         [int]$SpeechSpeed = 0
     )
 
-    $answer = Get-EightBallAnswers -Count $count
+    $answer = Get-EightBallAnswers -Count $count -AnswerSet $AnswerSet
     
     If ($Speak) {
         Add-Type -AssemblyName System.Speech
