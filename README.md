@@ -32,3 +32,15 @@ Decrease speech speed:
 Increase speech speed:
 
     Use-MagicEightBall -Speak -SpeechSpeed 6
+
+### Chosing answer types
+
+Something you can't do with a physical EightBall!
+
+Only get answers from the `Yes` answer set:
+
+    Use-MagicEightBall -AnswerSet Yes
+
+Only get answers from the `No` and `Maybe` answer set:
+
+    Use-MagicEightBall -AnswerSet No,Maybe
